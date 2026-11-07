@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chiles — South Western Australia 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A camping-first route from the Capes Region, through forests, granite ranges, and along remote white-sand coastline.">
+<meta property="og:image" content="https://chiles-wa-2026.rchiles.chatgpt.site/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one narrow reading column; sticky tab bar; stops as a numbered route list (order = travel order) */
+:root {
+  --bg: #f3f6f6;
+  --surface: #ffffff;
+  --fg: #12262e;
+  --muted: #536a72;
+  --line: #d6e1e2;
+  --ocean: #0f4c5c;
+  --accent: #1a8c96;
+  --sand: #e9e2cf;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c181c; --surface: #12242a; --fg: #e3eef0; --muted: #94acb2;
+    --line: #23393f; --ocean: #8fd3da; --accent: #4fc0c9; --sand: #3a3527;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c181c; --surface: #12242a; --fg: #e3eef0; --muted: #94acb2;
+  --line: #23393f; --ocean: #8fd3da; --accent: #4fc0c9; --sand: #3a3527;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+}
+.wrap {
+  max-width: 760px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+header.hero { padding-block: 40px 24px; }
+.eyebrow {
+  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin: 0 0 8px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.1rem, 7vw, 3.2rem); color: var(--ocean); font-weight: 700; }
+.lede { font-size: 1.1rem; color: var(--muted); max-width: 60ch; margin: 12px 0 0; }
+.stats { display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; }
+.stat b { font-family: var(--font-display); font-size: 2.2rem; color: var(--ocean); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 4px; }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+nav.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.tablist { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-block: 8px; }
+.tablist::-webkit-scrollbar { display: none; }
+.tab {
+  flex: 0 0 auto; border: 0; background: none; cursor: pointer;
+  font: 500 0.92rem var(--font-body); color: var(--muted);
+  padding: 8px 12px; border-radius: 999px; white-space: nowrap;
+}
+.tab:hover { color: var(--fg); }
+.tab[aria-selected="true"] { background: var(--ocean); color: var(--bg); }
+.tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+main { padding-block: 32px 48px; }
+section.panel { display: flex; flex-direction: column; gap: 24px; }
+h2 { font-size: 1.6rem; color: var(--fg); }
+.kicker { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 6px; }
+p { margin: 0; max-width: 65ch; }
+
+figure.map { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+figure.map a { display: block; }
+figure.map img { display: block; width: 100%; height: auto; max-width: 100%; }
+figure.map figcaption { padding: 10px 14px; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); }
+.map-fallback { padding: 16px 14px; font-size: 0.95rem; }
+.map-fallback a { color: var(--accent); }
+
+ol.stops { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+ol.stops li {
+  display: grid; grid-template-columns: 2.2rem 1fr auto; gap: 12px; align-items: baseline;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.n { font-family: var(--font-display); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.place { font-weight: 600; min-width: 0; }
+.dates { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+li.today { background: var(--sand); margin-inline: -8px; padding-inline: 8px; border-radius: 6px; }
+li.today .dates::after { content: " · tonight"; color: var(--fg); font-weight: 600; }
+
+.placeholder {
+  background: var(--surface); border: 1px dashed var(--line); border-radius: 12px;
+  padding: 24px; color: var(--muted);
+}
+
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; color: var(--muted); font-size: 0.85rem; }
+footer p + p { margin-top: 4px; }
+@media (prefers-reduced-motion: no-preference) { .tab { transition: background-color .15s, color .15s; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Chiles · 26 Oct — 17 Nov 2026</p>
+    <h1>South Western Australia</h1>
+    <p class="lede">A camping-first route from the Capes Region, through forests, granite ranges, and along remote white-sand coastline.</p>
+    <div class="stats">
+      <div class="stat"><b>23</b><span>days</span></div>
+      <div class="stat"><b>18</b><span>touring nights</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <div class="tablist" role="tablist">
+      <button class="tab" role="tab" id="tab-overview" aria-controls="overview" data-tab="overview">Overview</button>
+      <button class="tab" role="tab" id="tab-day-planner" aria-controls="day-planner" data-tab="day-planner">Day planner</button>
+      <button class="tab" role="tab" id="tab-beaches-tides" aria-controls="beaches-tides" data-tab="beaches-tides">Beaches &amp; tides</button>
+      <button class="tab" role="tab" id="tab-where-to-sleep" aria-controls="where-to-sleep" data-tab="where-to-sleep">Where to sleep</button>
+      <button class="tab" role="tab" id="tab-bookings" aria-controls="bookings" data-tab="bookings">Bookings</button>
+      <button class="tab" role="tab" id="tab-tickets-passes" aria-controls="tickets-passes" data-tab="tickets-passes">Tickets and Passes</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="panel" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+    <div>
+      <p class="kicker">The route at a glance</p>
+      <h2>A three-week Perth loop from wine country of the Capes Region to the remote south coast.</h2>
+    </div>
+    <p>Three nights in Perth to start, then south through Margaret River and the southern forests, east across the Great Southern to the Stirling Range and the Recherche Archipelago, and back inland from Esperance via Wave Rock. Some unsealed roads, 4WD tracks and drive-on beaches are included only if conditions and permissions allow.</p>
+
+    <figure class="map">
+      <a href="https://chiles-wa-2026.rchiles.chatgpt.site/maps/whole-trip-overview.png" target="_blank" rel="noopener">
+        <img src="https://chiles-wa-2026.rchiles.chatgpt.site/maps/whole-trip-overview.png"
+             alt="Map of southern Western Australia with the sixteen overnight bases numbered in travel order"
+             onerror="this.closest('figure').querySelector('.map-fallback').hidden=false; this.parentElement.hidden=true;">
+      </a>
+      <div class="map-fallback" hidden>
+        The route map can't be shown here. <a href="https://chiles-wa-2026.rchiles.chatgpt.site/maps/whole-trip-overview.png" target="_blank" rel="noopener">Open the route map</a>
+      </div>
+      <figcaption>Tap to enlarge. The connecting line is schematic; see the Day planner for actual roads.</figcaption>
+    </figure>
+
+    <div>
+      <p class="kicker">Overnight bases, in travel order</p>
+      <ol class="stops">
+        <li data-from="2026-10-26" data-to="2026-10-28"><span class="n">1</span><span class="place">Cottesloe Beach</span><span class="dates">26–28 Oct</span></li>
+        <li data-from="2026-10-29" data-to="2026-10-29"><span class="n">2</span><span class="place">Yallingup</span><span class="dates">29 Oct</span></li>
+        <li data-from="2026-10-30" data-to="2026-10-30"><span class="n">3</span><span class="place">Hamelin Bay</span><span class="dates">30 Oct</span></li>
+        <li data-from="2026-10-31" data-to="2026-10-31"><span class="n">4</span><span class="place">Windy Harbour</span><span class="dates">31 Oct</span></li>
+        <li data-from="2026-11-01" data-to="2026-11-01"><span class="n">5</span><span class="place">Parry Beach</span><span class="dates">1 Nov</span></li>
+        <li data-from="2026-11-02" data-to="2026-11-02"><span class="n">6</span><span class="place">Camp Kennedy</span><span class="dates">2 Nov</span></li>
+        <li data-from="2026-11-03" data-to="2026-11-04"><span class="n">7</span><span class="place">Mt Trio Bush Camp</span><span class="dates">3–4 Nov</span></li>
+        <li data-from="2026-11-05" data-to="2026-11-06"><span class="n">8</span><span class="place">Bremer Bay</span><span class="dates">5–6 Nov</span></li>
+        <li data-from="2026-11-07" data-to="2026-11-07"><span class="n">9</span><span class="place">Four Mile</span><span class="dates">7 Nov</span></li>
+        <li data-from="2026-11-08" data-to="2026-11-09"><span class="n">10</span><span class="place">Lucky Bay</span><span class="dates">8–9 Nov</span></li>
+        <li data-from="2026-11-10" data-to="2026-11-10"><span class="n">11</span><span class="place">Alexander Bay</span><span class="dates">10 Nov</span></li>
+        <li data-from="2026-11-11" data-to="2026-11-11"><span class="n">12</span><span class="place">Yokinup Mia Mia</span><span class="dates">11 Nov</span></li>
+        <li data-from="2026-11-12" data-to="2026-11-12"><span class="n">13</span><span class="place">Thomas Fishery / beach camp</span><span class="dates">12 Nov</span></li>
+        <li data-from="2026-11-13" data-to="2026-11-14"><span class="n">14</span><span class="place">Esperance</span><span class="dates">13–14 Nov</span></li>
+        <li data-from="2026-11-15" data-to="2026-11-15"><span class="n">15</span><span class="place">Wave Rock</span><span class="dates">15 Nov</span></li>
+        <li data-from="2026-11-16" data-to="2026-11-16"><span class="n">16</span><span class="place">Perth Waterfront</span><span class="dates">16 Nov</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== DAY PLANNER (to be added) ===== -->
+  <section class="panel" id="day-planner" role="tabpanel" aria-labelledby="tab-day-planner" hidden>
+    <h2>Day planner</h2>
+    <div class="placeholder">Not added yet.</div>
+  </section>
+
+  <!-- ===== BEACHES & TIDES (to be added) ===== -->
+  <section class="panel" id="beaches-tides" role="tabpanel" aria-labelledby="tab-beaches-tides" hidden>
+    <h2>Beaches &amp; tides</h2>
+    <div class="placeholder">Not added yet.</div>
+  </section>
+
+  <!-- ===== WHERE TO SLEEP (to be added) ===== -->
+  <section class="panel" id="where-to-sleep" role="tabpanel" aria-labelledby="tab-where-to-sleep" hidden>
+    <h2>Where to sleep</h2>
+    <div class="placeholder">Not added yet.</div>
+  </section>
+
+  <!-- ===== BOOKINGS (to be added) ===== -->
+  <section class="panel" id="bookings" role="tabpanel" aria-labelledby="tab-bookings" hidden>
+    <h2>Bookings</h2>
+    <div class="placeholder">Not added yet.</div>
+  </section>
+
+  <!-- ===== TICKETS AND PASSES (to be added) ===== -->
+  <section class="panel" id="tickets-passes" role="tabpanel" aria-labelledby="tab-tickets-passes" hidden>
+    <h2>Tickets and Passes</h2>
+    <div class="placeholder">Not added yet.</div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>South Western Australia · 2026</p>
+    <p>Route decisions remain conditional on official alerts and Defender Adventure approval.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var ids = tabs.map(function (t) { return t.dataset.tab; });
+  function show(id) {
+    if (ids.indexOf(id) < 0) id = 'overview';
+    tabs.forEach(function (t) {
+      var on = t.dataset.tab === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.dataset.tab).hidden = !on;
+      if (on && t.scrollIntoView) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      show(t.dataset.tab);
+      if (location.hash !== '#' + t.dataset.tab) history.replaceState(null, '', '#' + t.dataset.tab);
+    });
+  });
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1)); });
+  show(location.hash.slice(1));
+
+  // Highlight tonight's stop (Perth time)
+  try {
+    var today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Australia/Perth' }).format(new Date());
+    document.querySelectorAll('ol.stops li').forEach(function (li) {
+      if (today >= li.dataset.from && today <= li.dataset.to) li.classList.add('today');
+    });
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
